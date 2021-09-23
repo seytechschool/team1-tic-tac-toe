@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+  width: calc(50vh + 20px);
+  background-color: lightcoral;
+  margin: 25vh auto 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: relative;
+}
+
+table {
+  height: 50vh;
+  width: 50vh;
+  margin: 15px 0;
+}
+
+td {
+  background-color: lightgreen;
+  width: calc(100% / 3);
+  height: calc(100% / 3);
+  font-size: 5vh;
+  text-align: center;
+  color: black;
+  cursor: pointer;
+}
+
+.restart {
+  width: 50px;
+  height: 20px;
+  padding: 10px 20px;
+  margin-top: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.winner-sign {
+  position: absolute;
+  height: 50px;
+  z-index: 100;
+  top: -50px;
+  width: 100%;
+  color: red;
+  background-color: rgba(250, 250, 250, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
