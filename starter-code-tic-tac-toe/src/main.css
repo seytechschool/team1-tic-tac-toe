@@ -11,7 +11,7 @@
   justify-content: center;
   flex-wrap: wrap;
   overflow: hidden;
-  position: relative;
+  /* position: relative; */
 }
 
 table {
@@ -50,4 +50,15 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.container{
+  display: flex;
+  background-color: aqua;
+  position:relative;
+  /* height: 100vh; */
+}
+.box{
+  position: absolute;
+  right:0;
+  top: 50;
 }
