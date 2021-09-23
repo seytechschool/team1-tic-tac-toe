@@ -83,6 +83,7 @@ function drawOnTile(tile) {
   } else {
     currentPlayer = "X";
   }
+  
 }
 
 function checkWinner(tileRow, tileCol) {
