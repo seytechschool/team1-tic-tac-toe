@@ -8,6 +8,7 @@ import _ from "lodash";
 var theTile;
 var gameOver = false;
 var currentPlayer = "X";
+var stepNum = 0;
 
 var tileMatrix = [
   [0, 0, 0],
@@ -49,8 +50,12 @@ function clickTile(event) {
   ) {
     // console.log(event.target)
     theTile = event.target;
+  // console.log(theTile)
     // console.log(theTile)
     drawOnTile(theTile);
+    stepNum++;
+    displaySteps(stepNum)
+
   } else {
     return;
   }
@@ -65,6 +70,7 @@ function drawOnTile(tile) {
 
 
   tileMatrix[tileRow][tileCol] = currentPlayer;
+  
   // console.log(tileMatrix[tileRow][tileCol])
 
   // here we will check who is the winner
@@ -83,7 +89,7 @@ function drawOnTile(tile) {
   } else {
     currentPlayer = "X";
   }
-  
+
 }
 
 function checkWinner(tileRow, tileCol) {
@@ -109,23 +115,15 @@ function checkWinner(tileRow, tileCol) {
 
 console.log(theTile, 'test')
 
-function displaySteps(event){
-  if (
-    event.target.nodeName === "TD" &&
-    event.target.innerHTML.length === 0 &&
-    !gameOver
-  ) {
-    // console.log(event.target)
-    theTile = event.target;
-    // console.log(theTile)
-    drawOnTile(theTile);
-    theTile.addEventListener('click', function(){
-      const btn = document.querySelector('button')
-      const nextPlayer = document.querySelector('p')
-      // nextPlayer.innerHTML = currentPlayer;
-      console.log(nextPlayer.innerHTML)
-    })
-  } else {
-    return;
-  }
+function displaySteps(step){
+  var ol = document.getElementById('listSteps')
+  var li = document.createElement('LI');
+  var btn = document.createElement('button');
+  btn.setAttribute('class', 'stepsBtn');
+  btn.innerHTML = 'Go to move #' + step;
+  li.appendChild(btn);
+  ol.appendChild(li);
+  var p = document.querySelector('p');
+  p.innerHTML = 'Next player is: ' + currentPlayer;
 }
+
