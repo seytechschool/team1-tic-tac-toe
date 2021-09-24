@@ -15,6 +15,7 @@ var tileMatrix = [
   [0, 0, 0],
   [0, 0, 0],
 ];
+var stepsArr = [];
 
 document.querySelector(".restart").addEventListener("click", clearTiles);
 
@@ -39,6 +40,7 @@ function clearTiles() {
     [0, 0, 0],
     [0, 0, 0],
   ];
+  clearSteps()
 }
 
 function clickTile(event) {
@@ -70,17 +72,17 @@ function drawOnTile(tile) {
 
 
   tileMatrix[tileRow][tileCol] = currentPlayer;
-  
+  stepsArr.push(tileMatrix)
+  console.log(stepsArr)
   // console.log(tileMatrix[tileRow][tileCol])
-
+  
   // here we will check who is the winner
   // checkWinner => boolean
   if (checkWinner(tileRow, tileCol)) {
     gameOver = true;
-    document.querySelector(
-      ".winner-sign"
-    ).innerHTML = `The winner is ${currentPlayer}`;
+    document.querySelector(".winner-sign").innerHTML = `The winner is ${currentPlayer}`;
     document.querySelector(".winner-sign").style.top = "calc(50% - 25px)";
+    document.querySelector('p').innerHTML = 'The winner is: ' + currentPlayer
     return;
   }
 
@@ -108,8 +110,9 @@ function checkWinner(tileRow, tileCol) {
   var rightToLeftDiagWin = tileMatrix.every(function (row, index) {
     return row[row.length - index - 1] === currentPlayer;
   });
-
+  
   return rowWin || colWin || leftToRightDiagWin || rightToLeftDiagWin;
+  
 }
 
 
@@ -118,12 +121,25 @@ console.log(theTile, 'test')
 function displaySteps(step){
   var ol = document.getElementById('listSteps')
   var li = document.createElement('LI');
+  li.setAttribute('class', 'liSteps')
   var btn = document.createElement('button');
   btn.setAttribute('class', 'stepsBtn');
   btn.innerHTML = 'Go to move #' + step;
   li.appendChild(btn);
   ol.appendChild(li);
-  var p = document.querySelector('p');
+  let p = document.querySelector('p');
   p.innerHTML = 'Next player is: ' + currentPlayer;
 }
 
+function clearSteps(){
+  stepNum = 0;
+  var ol = document.getElementById('listSteps')
+  ol.querySelectorAll('.liSteps').forEach(function(item) {
+        item.remove();
+    });
+  let p = document.querySelector('p');
+  p.innerHTML = 'Next player is: ' + currentPlayer;
+}
+// function goToStep(){
+
+// }
